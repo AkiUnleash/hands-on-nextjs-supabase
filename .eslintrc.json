@@ -7,8 +7,6 @@
     "plugin:import/warnings"
   ],
   "rules": {
-    // import の順番をルール化
-    // 参考：https://github.com/benmosher/eslint-plugin-import/blob/master/docs/rules/order.md
     "import/order": [
       "error",
       {

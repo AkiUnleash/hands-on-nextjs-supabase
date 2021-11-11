@@ -3,6 +3,7 @@ import { ReactNode, useEffect } from 'react'
 import { supabase } from 'src/service/supabase/connections'
 import { useSetRecoilState } from 'recoil'
 import { loginUserState } from 'src/service/recoil/loginuser'
+import router from 'next/router'
 
 type Props = {
   children: ReactNode
@@ -22,12 +23,13 @@ const Authentication: NextPage<Props> = ({ children }) => {
     const f = async () => {
       if (!unmounted) {
         supabase.auth.onAuthStateChange(async (event, session) => {
-          console.log(event, session);
           if (event === 'SIGNED_IN') {
+            console.log(event, session);
             setLoginUser({
               id: session.user.id,
               name: ''
             })
+            router.push("/profile")
           }
         })
       }

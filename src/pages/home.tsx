@@ -1,5 +1,6 @@
 import type { NextPage } from "next";
 import Image from 'next/image'
+import { useCallback, useEffect, useState, memo } from "react";
 import Layout from 'src/components/Layout'
 import { Container, CssBaseline, Box, Button, TextField } from "@mui/material";
 import imageProfile from 'src/assets/images/profile.svg'
@@ -15,6 +16,10 @@ import TimelineOppositeContent from '@mui/lab/TimelineOppositeContent';
 import TimelineDot from '@mui/lab/TimelineDot';
 import AccountCircleIcon from '@mui/icons-material/AccountCircle';
 import Typography from '@mui/material/Typography';
+import { supabase } from 'src/service/supabase/connections'
+import { useRecoilValue } from 'recoil';
+import { loginUserState } from 'src/service/recoil/loginuser'
+import { conversionDate } from "src/utils/dataFormat";
 
 // スタイルシートの指定
 const useStyles = makeStyles((theme) => ({
@@ -39,9 +44,48 @@ const useStyles = makeStyles((theme) => ({
 const Index: NextPage = () => {
 
   const classes = useStyles();
+  const loginUser = useRecoilValue(loginUserState)
+  const [sentence, setSentence] = useState("")
+  const [timeline, setTimeline] = useState([])
 
-  const handleSubmit = () => {
-  }
+  const handleSubmit = useCallback(async (event) => {
+    event.preventDefault()
+
+    const { error } = await supabase
+      .from('diary')
+      .insert([{
+        profile_id: loginUser.id,
+        sentence: sentence
+      }])
+
+    setSentence('')
+
+    error && console.error(error)
+  }, [])
+
+  useEffect(() => {
+    let isUnmount = false;
+    (async () => {
+      try {
+        if (!isUnmount) {
+          const { data } = await supabase
+            .from('diary')
+            .select(`sentence,
+            created_at,
+            profile (
+              name
+            )
+            `)
+            .order('created_at', { ascending: false })
+
+          setTimeline(data)
+        }
+      } catch (e) {
+        console.error(e);
+      }
+    })();
+    return () => { isUnmount = true }
+  }, [])
 
   return (
     <ThemeProvider theme={theme}>
@@ -75,6 +119,8 @@ const Index: NextPage = () => {
                 autoFocus
                 placeholder={"今のキモチを投稿しよう。"}
                 className={classes.textboxTweet}
+                value={sentence}
+                onChange={(e: React.ChangeEvent<HTMLTextAreaElement>) => setSentence(e.target.value)}
               />
               <Button
                 type="submit"
@@ -85,61 +131,41 @@ const Index: NextPage = () => {
             </Box>
 
             <Timeline position="alternate">
-              <TimelineItem>
-                <TimelineOppositeContent
-                  sx={{
-                    m: 'auto 0',
-                    display: 'flex',
-                    alignItems: 'center',
-                    justifyContent: 'flex-end'
-                  }}
-                  align="right"
-                  variant="body2"
-                  color="text.secondary"
-                >
-                  2021.10.11 23:12
-                </TimelineOppositeContent>
-                <TimelineSeparator>
-                  <TimelineConnector />
-                  <TimelineDot>
-                    <AccountCircleIcon />
-                  </TimelineDot>
-                  <TimelineConnector />
-                </TimelineSeparator>
-                <TimelineContent sx={{ width: 512 }}>
-                  <Typography variant="h6" component="span">
-                    Hello World!!
-                  </Typography>
-                  <Typography>nickname</Typography>
-                </TimelineContent>
-              </TimelineItem>
-              <TimelineItem>
-                <TimelineOppositeContent
-                  sx={{
-                    m: 'auto 0',
-                    display: 'flex',
-                    alignItems: 'center',
-                    justifyItems: 'center'
-                  }}
-                  variant="body2"
-                  color="text.secondary"
-                >
-                  2021.10.11 23:12
-                </TimelineOppositeContent>
-                <TimelineSeparator>
-                  <TimelineConnector />
-                  <TimelineDot>
-                    <AccountCircleIcon />
-                  </TimelineDot>
-                  <TimelineConnector />
-                </TimelineSeparator>
-                <TimelineContent sx={{ width: 512 }}>
-                  <Typography variant="h6" component="span">
-                    hoge hoge
-                  </Typography>
-                  <Typography>nickname</Typography>
-                </TimelineContent>
-              </TimelineItem>
+
+              {timeline && (
+                timeline.map((t, index) => {
+                  return (
+                    <TimelineItem>
+                      <TimelineOppositeContent
+                        sx={{
+                          m: 'auto 0',
+                          display: 'flex',
+                          alignItems: 'center',
+                          justifyContent: index % 2 === 1 ? 'flex-start' : 'flex-end'
+                        }}
+                        variant="body2"
+                        color="text.secondary"
+                      >
+                        {conversionDate(t.created_at)}
+                      </TimelineOppositeContent>
+                      <TimelineSeparator>
+                        <TimelineConnector />
+                        <TimelineDot>
+                          <AccountCircleIcon />
+                        </TimelineDot>
+                        <TimelineConnector />
+                      </TimelineSeparator>
+                      <TimelineContent sx={{ width: 512 }}>
+                        <Typography variant="h6" component="span">
+                          {t.sentence}
+                        </Typography>
+                        <Typography>{t.profile.name}</Typography>
+                      </TimelineContent>
+                    </TimelineItem>
+                  )
+                })
+              )}
+
             </Timeline>
           </Box>
         </Container>

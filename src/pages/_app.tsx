@@ -4,7 +4,7 @@ import PropTypes from 'prop-types';
 import { ThemeProvider } from '@mui/material/styles';
 import CssBaseline from '@mui/material/CssBaseline';
 import { CacheProvider } from '@emotion/react';
-import theme from 'src/service/theme/theme';
+import theme from 'src/service/mui/theme';
 import createEmotionCache from 'src/service/emotion/createEmotionCache';
 import Authentication from 'src/components/Authentication';
 

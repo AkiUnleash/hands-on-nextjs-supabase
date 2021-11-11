@@ -5,7 +5,7 @@ import GitHubIcon from '@mui/icons-material/GitHub';
 import imageKey from 'src/assets/images/key.png'
 import { makeStyles } from '@material-ui/core/styles';
 import { ThemeProvider } from "@mui/material/styles";
-import theme from "src/service/theme/theme";
+import theme from "src/service/mui/theme";
 import Heading from 'src/components/Heading'
 import { supabase } from 'src/service/supabase/connections'
 

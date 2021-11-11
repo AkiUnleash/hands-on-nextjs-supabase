@@ -48,37 +48,43 @@ const Index: NextPage = () => {
   const [sentence, setSentence] = useState("")
   const [timeline, setTimeline] = useState([])
 
-  const handleSubmit = useCallback(async (event) => {
-    event.preventDefault()
-
+  const registerDiary = async () => {
     const { error } = await supabase
       .from('diary')
       .insert([{
         profile_id: loginUser.id,
         sentence: sentence
       }])
-
-    setSentence('')
-
     error && console.error(error)
+    setSentence('')
+  }
+
+  const readDiary = useCallback(async () => {
+    const { data } = await supabase
+      .from('diary')
+      .select(`sentence,
+            created_at,
+            profile (
+              name
+            )
+            `)
+      .order('created_at', { ascending: false })
+
+    setTimeline(data)
   }, [])
+
+  const handleSubmit = async (event) => {
+    event.preventDefault()
+    await registerDiary()
+    await readDiary()
+  }
 
   useEffect(() => {
     let isUnmount = false;
     (async () => {
       try {
         if (!isUnmount) {
-          const { data } = await supabase
-            .from('diary')
-            .select(`sentence,
-            created_at,
-            profile (
-              name
-            )
-            `)
-            .order('created_at', { ascending: false })
-
-          setTimeline(data)
+          await readDiary()
         }
       } catch (e) {
         console.error(e);
@@ -131,7 +137,6 @@ const Index: NextPage = () => {
             </Box>
 
             <Timeline position="alternate">
-
               {timeline && (
                 timeline.map((t, index) => {
                   return (
@@ -165,7 +170,6 @@ const Index: NextPage = () => {
                   )
                 })
               )}
-
             </Timeline>
           </Box>
         </Container>

@@ -1,5 +1,4 @@
 import Head from "next/head";
-import router from 'next/router'
 import { NextPage } from 'next'
 import AppBar from '@material-ui/core/AppBar';
 import Toolbar from '@material-ui/core/Toolbar';
@@ -9,7 +8,7 @@ import IconButton from '@material-ui/core/IconButton';
 import MenuIcon from '@material-ui/icons/Menu';
 import { makeStyles } from '@material-ui/core/styles';
 import { supabase } from "src/service/supabase/connections";
-import { useRecoilState } from 'recoil'
+import { useRecoilValue } from 'recoil'
 import { loginUserState } from 'src/service/recoil/loginuser'
 
 type Props = {
@@ -29,18 +28,14 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-
-
 const Layout: NextPage<Props> = ({ children, home }: Props) => {
 
   const siteTitle: string = "Supabase Hans-on App";
   const classes = useStyles();
-  const [loginUser, setLoginUser] = useRecoilState(loginUserState)
+  const loginUser = useRecoilValue(loginUserState)
 
   const logoutHandler = () => {
     supabase.auth.signOut()
-    setLoginUser(null)
-    router.push("/")
   }
 
   return (

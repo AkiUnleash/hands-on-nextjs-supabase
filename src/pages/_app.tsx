@@ -1,4 +1,5 @@
 import * as React from 'react';
+import { RecoilRoot } from 'recoil';
 import PropTypes from 'prop-types';
 import { ThemeProvider } from '@mui/material/styles';
 import CssBaseline from '@mui/material/CssBaseline';
@@ -16,11 +17,13 @@ export default function MyApp(props) {
   return (
     <CacheProvider value={emotionCache}>
       <ThemeProvider theme={theme}>
-        <Authentication>
-          {/* CssBaseline kickstart an elegant, consistent, and simple baseline to build upon. */}
-          <CssBaseline />
-          <Component {...pageProps} />
-        </Authentication>
+        <RecoilRoot>
+          <Authentication>
+            {/* CssBaseline kickstart an elegant, consistent, and simple baseline to build upon. */}
+            <CssBaseline />
+            <Component {...pageProps} />
+          </Authentication>
+        </RecoilRoot>
       </ThemeProvider>
     </CacheProvider>
   );

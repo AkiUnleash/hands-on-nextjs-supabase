@@ -46,10 +46,10 @@ const TimeLineArea: NextPage<Props> = ({
                 <TimelineConnector />
               </TimelineSeparator>
               <TimelineContent sx={{ width: 512 }}>
-                <Typography variant="h6" component="span">
+                <Typography variant="h5" component="span">
                   {t.sentence}
                 </Typography>
-                <Typography>{t.profile.name}</Typography>
+                <Typography variant='body2'>{t.profile.name}</Typography>
               </TimelineContent>
             </TimelineItem>
           )

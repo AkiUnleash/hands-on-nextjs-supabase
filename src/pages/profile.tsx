@@ -5,7 +5,7 @@ import { Container, CssBaseline, Box, Button, TextField } from "@mui/material";
 import imageProfile from 'src/assets/images/profile.svg'
 import { makeStyles } from '@material-ui/core/styles';
 import { ThemeProvider } from "@mui/material/styles";
-import theme from "src/service/theme/theme";
+import theme from "src/service/mui/theme";
 import Heading from 'src/components/Heading'
 import { supabase } from 'src/service/supabase/connections'
 import { useRecoilState } from 'recoil'

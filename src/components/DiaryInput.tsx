@@ -3,7 +3,7 @@ import { Box, Button, TextField } from "@mui/material";
 import Image from 'next/image'
 import { makeStyles } from '@material-ui/core/styles';
 import imageProfile from 'src/assets/images/profile.svg'
-import theme from "src/service/theme/theme";
+import theme from "src/service/mui/theme";
 import { Dispatch, SetStateAction } from "react";
 
 // 型宣言

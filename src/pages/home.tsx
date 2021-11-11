@@ -3,7 +3,7 @@ import { useCallback, useEffect, useState } from "react";
 import Layout from 'src/components/Layout'
 import { Container, CssBaseline, Box } from "@mui/material";
 import { ThemeProvider } from "@mui/material/styles";
-import theme from "src/service/theme/theme";
+import theme from "src/service/mui/theme";
 import { supabase } from 'src/service/supabase/connections'
 import { useRecoilValue } from 'recoil';
 import { loginUserState } from 'src/service/recoil/loginuser'

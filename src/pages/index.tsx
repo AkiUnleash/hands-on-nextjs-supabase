@@ -7,6 +7,7 @@ import { makeStyles } from '@material-ui/core/styles';
 import { ThemeProvider } from "@mui/material/styles";
 import theme from "src/service/theme/theme";
 import Heading from 'src/components/Heading'
+import { supabase } from 'src/service/supabase/connections'
 
 // スタイルシートの指定
 const useStyles = makeStyles((theme) => ({
@@ -27,7 +28,8 @@ const Index: NextPage = () => {
 
   const classes = useStyles();
 
-  const handleClick = () => {
+  const handleClick = async () => {
+    await supabase.auth.signIn({ provider: 'github' })
   }
 
   return (

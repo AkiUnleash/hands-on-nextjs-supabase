@@ -28,6 +28,7 @@
     "@mui/icons-material": "^5.0.5",
     "@mui/lab": "^5.0.0-alpha.54",
     "@mui/material": "^5.0.6",
+    "@supabase/supabase-js": "^1.27.0",
     "@typescript-eslint/eslint-plugin": "^5.3.0",
     "next": "11.1.2",
     "react": "17.0.2",

@@ -5,6 +5,9 @@ import { useSetRecoilState } from 'recoil'
 import { loginUserState } from 'src/service/recoil/loginuser'
 import router from 'next/router'
 
+/**
+ * 型宣言
+ */
 type Props = {
   children: ReactNode
 }
@@ -12,7 +15,7 @@ type Props = {
 /**
  * 認証をチェックするためのコンポーネント
  * @param  children
- * @returns Components
+ * @returns コンポーネント
  */
 const Authentication: NextPage<Props> = ({ children }) => {
 

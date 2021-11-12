@@ -11,12 +11,17 @@ import DiaryInput from "src/components/DiaryInput";
 import TimeLineArea from "src/components/TimeLineArea";
 import { diary } from "src/type/model";
 
-const Index: NextPage = () => {
+/**
+ * ホーム画面
+ * @returns コンポーネント
+ */
+const Home: NextPage = () => {
 
   const loginUser = useRecoilValue(loginUserState)
   const [sentence, setSentence] = useState("")
   const [timeline, setTimeline] = useState<diary[]>([])
 
+  // 投稿の登録処理
   const registerDiary = async () => {
     const { error } = await supabase
       .from('diary')
@@ -28,6 +33,7 @@ const Index: NextPage = () => {
     setSentence('')
   }
 
+  // 投稿内容の取得
   const readDiary = useCallback(async () => {
     const { data } = await supabase
       .from('diary')
@@ -42,12 +48,14 @@ const Index: NextPage = () => {
     setTimeline(data)
   }, [])
 
+  // Submit実行時の処理
   const handleSubmit = async (event) => {
     event.preventDefault()
     await registerDiary()
     await readDiary()
   }
 
+  // 初回レンダリング時に実行
   useEffect(() => {
     let isUnmount = false;
     (async () => {
@@ -74,22 +82,19 @@ const Index: NextPage = () => {
               alignItems: 'center',
             }}
           >
-
             <DiaryInput
               handleSubmit={handleSubmit}
               sentence={sentence}
               setSentence={setSentence}
             />
-
             <TimeLineArea
               timeline={timeline}
             />
-
           </Box>
         </Container>
-      </Layout >
+      </Layout>
     </ThemeProvider >
   );
 };
 
-export default Index;
+export default Home;

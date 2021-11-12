@@ -11,15 +11,21 @@ import { conversionDate } from "src/utils/dataFormat";
 import AccountCircleIcon from '@mui/icons-material/AccountCircle';
 import { diary } from "src/type/model";
 
-// 型宣言
+/**
+ * 型宣言
+ */
 type Props = {
   timeline: diary[];
 }
 
+/**
+ * ホーム画面で使用しているタイムラインのコンポーネント
+ * @param  timeline diaryテーブルから取得した配列
+ * @returns コンポーネント
+ */
 const TimeLineArea: NextPage<Props> = ({
   timeline
 }) => {
-
   return (
     <Timeline position="alternate">
       {timeline && (

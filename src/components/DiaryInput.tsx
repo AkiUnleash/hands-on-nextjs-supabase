@@ -6,14 +6,18 @@ import imageProfile from 'src/assets/images/profile.svg'
 import theme from "src/service/mui/theme";
 import { Dispatch, SetStateAction } from "react";
 
-// 型宣言
+/**
+ * 型宣言
+ */
 type Props = {
   handleSubmit: (event: React.FormEvent<HTMLFormElement>) => Promise<void>;
   sentence: string;
   setSentence: Dispatch<SetStateAction<string>>;
 }
 
-// スタイルシートの指定
+/**
+ * スタイルシート
+ */
 const useStyles = makeStyles((theme) => ({
   textboxTweet: {
     marginLeft: theme.spacing(1),
@@ -33,6 +37,13 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
+/**
+ * 認証をチェックするためのコンポーネント
+ * @param  handleSubmit 投稿の処理 
+ * @param  sentence 投稿文章の文字列
+ * @param  setSentence 投稿文書を一時保存するためのuseState
+ * @returns コンポーネント
+ */
 const DiaryInput: NextPage<Props> = ({
   handleSubmit,
   sentence,

@@ -9,7 +9,9 @@ import theme from "src/service/mui/theme";
 import Heading from 'src/components/Heading'
 import { supabase } from 'src/service/supabase/connections'
 
-// スタイルシートの指定
+/**
+ * スタイルシート
+ */
 const useStyles = makeStyles((theme) => ({
   buttonGithub: {
     fontSize: 18,
@@ -24,10 +26,15 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
+/**
+ * トップ画面
+ * @returns コンポーネント
+ */
 const Index: NextPage = () => {
 
   const classes = useStyles();
 
+  // Githubログインボタンのクリック時
   const handleClick = async () => {
     await supabase.auth.signIn({ provider: 'github' })
   }

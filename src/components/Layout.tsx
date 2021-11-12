@@ -11,11 +11,16 @@ import { supabase } from "src/service/supabase/connections";
 import { useRecoilValue } from 'recoil'
 import { loginUserState } from 'src/service/recoil/loginuser'
 
+/**
+ * 型宣言
+ */
 type Props = {
   children?: React.ReactNode;
-  home?: boolean;
 };
 
+/**
+ * スタイルシート
+ */
 const useStyles = makeStyles((theme) => ({
   root: {
     flexGrow: 1,
@@ -28,7 +33,12 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-const Layout: NextPage<Props> = ({ children, home }: Props) => {
+/**
+ * すべての画面に共通して挿入するコンポーネント
+ * @param  children コンポーネント
+ * @returns コンポーネント
+ */
+const Layout: NextPage<Props> = ({ children }: Props) => {
 
   const siteTitle: string = "Supabase Hans-on App";
   const classes = useStyles();

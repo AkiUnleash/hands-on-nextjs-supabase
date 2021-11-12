@@ -3,14 +3,18 @@ import Image from 'next/image'
 import { Grid, Typography } from "@mui/material";
 import { makeStyles } from '@material-ui/core/styles';
 
-// 型宣言
+/**
+ * 型宣言
+ */
 type Props = {
   imageSrc: StaticImageData;
   imageAlt: string;
   subject: string;
 }
 
-// スタイルシートの指定
+/**
+ * スタイルシート
+ */
 const useStyles = makeStyles((theme) => ({
   iconImage: {
     marginTop: theme.spacing(10),
@@ -21,7 +25,13 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-
+/**
+ * トップ画面及びプロフィール登録画面の目印用のコンポーネント
+ * @param  imageSrc 画像のURL
+ * @param  imageAlt 画像の説明
+ * @param  subject タイトル
+ * @returns コンポーネント
+ */
 const Heading: NextPage<Props> = ({
   imageSrc,
   imageAlt,

@@ -12,7 +12,9 @@ import { useRecoilState } from 'recoil'
 import { loginUserState } from 'src/service/recoil/loginuser'
 import router from 'next/router'
 
-// スタイルシートの指定
+/**
+ * スタイルシート
+ */
 const useStyles = makeStyles((theme) => ({
   textboxName: {
     marginTop: theme.spacing(6),
@@ -30,12 +32,17 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-const Index: NextPage = () => {
+/**
+ * プロフィール登録画面
+ * @returns コンポーネント
+ */
+const Profile: NextPage = () => {
 
   const classes = useStyles();
   const [loginUser, setLoginUser] = useRecoilState(loginUserState)
   const [name, setName] = useState("")
 
+  // プロフィール登録ボタンクリック時の処理
   const handleSubmit = async (event) => {
     event.preventDefault()
 
@@ -52,9 +59,7 @@ const Index: NextPage = () => {
       }])
 
     error && console.error(error)
-
     router.push("/home")
-
   }
 
   return (
@@ -105,4 +110,4 @@ const Index: NextPage = () => {
   );
 };
 
-export default Index;
+export default Profile;

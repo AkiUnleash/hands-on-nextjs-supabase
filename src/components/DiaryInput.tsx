@@ -32,8 +32,11 @@ const useStyles = makeStyles((theme) => ({
     width: 96,
     marginLeft: theme.spacing(1),
     '&:hover': {
-      backgroundColor: '#aaa',
+      backgroundColor: '#90caf9',
     },
+    '&.Mui-disabled': {
+      backgroundColor: '#bdbdbd',
+    }
   },
 }));
 
@@ -71,7 +74,11 @@ const DiaryInput: NextPage<Props> = ({ handleSubmit, sentence, setSentence }) =>
           value={sentence}
           onChange={(e: React.ChangeEvent<HTMLTextAreaElement>) => setSentence(e.target.value)}
         />
-        <Button type='submit' className={classes.buttonRegister}>
+        <Button
+          type='submit'
+          className={classes.buttonRegister}
+          disabled={!sentence || sentence.length >= 140}
+        >
           投稿
         </Button>
       </Box>

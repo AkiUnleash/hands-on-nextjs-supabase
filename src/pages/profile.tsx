@@ -27,8 +27,11 @@ const useStyles = makeStyles((theme) => ({
     paddingRight: 16,
     marginTop: theme.spacing(4),
     '&:hover': {
-      backgroundColor: '#aaa',
+      backgroundColor: '#90caf9',
     },
+    '&.Mui-disabled': {
+      backgroundColor: '#bdbdbd',
+    }
   },
 }));
 

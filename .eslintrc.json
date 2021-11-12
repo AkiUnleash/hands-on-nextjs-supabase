@@ -2,7 +2,9 @@
   "extends": ["next/core-web-vitals", "prettier"],
   "plugins": ["@typescript-eslint", "unused-imports"],
   "rules": {
-    "no-shadow": "error",
+    "no-shadow": "off",
+    "react/display-name": "off",
+    "@typescript-eslint/no-shadow": ["off"],
     "@typescript-eslint/explicit-function-return-type": "warn",
     "unused-imports/no-unused-imports": "error",
     "unused-imports/no-unused-vars": [

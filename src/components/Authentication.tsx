@@ -1,16 +1,16 @@
-import { NextPage } from 'next'
-import { ReactNode, useEffect } from 'react'
-import { supabase } from 'src/service/supabase/connections'
-import { useSetRecoilState } from 'recoil'
-import { loginUserState } from 'src/service/recoil/loginuser'
-import router from 'next/router'
+import { NextPage } from 'next';
+import { ReactNode, useEffect } from 'react';
+import { supabase } from 'src/service/supabase/connections';
+import { useSetRecoilState } from 'recoil';
+import { loginUserState } from 'src/service/recoil/loginuser';
+import router from 'next/router';
 
 /**
  * 型宣言
  */
 type Props = {
-  children: ReactNode
-}
+  children: ReactNode;
+};
 
 /**
  * 認証をチェックするためのコンポーネント
@@ -18,11 +18,10 @@ type Props = {
  * @returns コンポーネント
  */
 const Authentication: NextPage<Props> = ({ children }) => {
-
-  const setLoginUser = useSetRecoilState(loginUserState)
+  const setLoginUser = useSetRecoilState(loginUserState);
 
   useEffect(() => {
-    var unmounted = false
+    var unmounted = false;
     const f = async () => {
       if (!unmounted) {
         supabase.auth.onAuthStateChange(async (event, session) => {
@@ -31,36 +30,38 @@ const Authentication: NextPage<Props> = ({ children }) => {
               const { data } = await supabase
                 .from('profile')
                 .select('name')
-                .match({ id: session.user.id })
+                .match({ id: session.user.id });
 
               if (data.length === 0) {
                 setLoginUser({
                   id: session.user.id,
-                  name: ''
-                })
-                router.push("/profile")
+                  name: '',
+                });
+                router.push('/profile');
               } else {
                 setLoginUser({
                   id: session.user.id,
-                  name: data[0].name
-                })
-                router.push("/home")
+                  name: data[0].name,
+                });
+                router.push('/home');
               }
               break;
             case 'SIGNED_OUT':
-              setLoginUser(null)
-              router.push("/")
+              setLoginUser(null);
+              router.push('/');
               break;
           }
-        })
+        });
       }
-    }
-    f()
-    const cleanUp = () => { unmounted = true }
-    return cleanUp
-  }, [])
+    };
+    f();
+    const cleanUp = () => {
+      unmounted = true;
+    };
+    return cleanUp;
+  }, []);
 
-  return (<>{children}</>)
-}
+  return <>{children}</>;
+};
 
-export default Authentication
+export default Authentication;

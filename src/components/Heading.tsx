@@ -1,6 +1,6 @@
-import type { NextPage } from "next";
-import Image from 'next/image'
-import { Grid, Typography } from "@mui/material";
+import type { NextPage } from 'next';
+import Image from 'next/image';
+import { Grid, Typography } from '@mui/material';
 import { makeStyles } from '@material-ui/core/styles';
 
 /**
@@ -10,7 +10,7 @@ type Props = {
   imageSrc: StaticImageData;
   imageAlt: string;
   subject: string;
-}
+};
 
 /**
  * スタイルシート
@@ -21,7 +21,7 @@ const useStyles = makeStyles((theme) => ({
   },
   subject: {
     fontSize: 32,
-    fontWeight: 'bold'
+    fontWeight: 'bold',
   },
 }));
 
@@ -32,25 +32,16 @@ const useStyles = makeStyles((theme) => ({
  * @param  subject タイトル
  * @returns コンポーネント
  */
-const Heading: NextPage<Props> = ({
-  imageSrc,
-  imageAlt,
-  subject
-}) => {
-
+const Heading: NextPage<Props> = ({ imageSrc, imageAlt, subject }) => {
   const classes = useStyles();
 
   return (
     <>
       <Grid className={classes.iconImage}>
-        <Image
-          src={imageSrc}
-          alt={imageAlt} />
+        <Image src={imageSrc} alt={imageAlt} />
       </Grid>
       <Grid>
-        <Typography className={classes.subject}>
-          {subject}
-        </Typography>
+        <Typography className={classes.subject}>{subject}</Typography>
       </Grid>
     </>
   );

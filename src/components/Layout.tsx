@@ -7,6 +7,9 @@ import Button from '@material-ui/core/Button';
 import IconButton from '@material-ui/core/IconButton';
 import MenuIcon from '@material-ui/icons/Menu';
 import { makeStyles } from '@material-ui/core/styles';
+import { supabase } from "src/service/supabase/connections";
+import { useRecoilValue } from 'recoil'
+import { loginUserState } from 'src/service/recoil/loginuser'
 
 type Props = {
   children?: React.ReactNode;
@@ -25,11 +28,15 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-
 const Layout: NextPage<Props> = ({ children, home }: Props) => {
 
   const siteTitle: string = "Supabase Hans-on App";
   const classes = useStyles();
+  const loginUser = useRecoilValue(loginUserState)
+
+  const logoutHandler = () => {
+    supabase.auth.signOut()
+  }
 
   return (
     <>
@@ -51,7 +58,12 @@ const Layout: NextPage<Props> = ({ children, home }: Props) => {
           <Typography variant="h6" className={classes.title}>
             {siteTitle}
           </Typography>
-          <Button color="inherit">Logout</Button>
+          {loginUser && (
+            <Button
+              color="inherit"
+              onClick={logoutHandler}
+            >Logout</Button>
+          )}
         </Toolbar>
       </AppBar>
       <main>{children}</main>

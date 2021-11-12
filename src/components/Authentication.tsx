@@ -23,13 +23,31 @@ const Authentication: NextPage<Props> = ({ children }) => {
     const f = async () => {
       if (!unmounted) {
         supabase.auth.onAuthStateChange(async (event, session) => {
-          if (event === 'SIGNED_IN') {
-            console.log(event, session);
-            setLoginUser({
-              id: session.user.id,
-              name: ''
-            })
-            router.push("/profile")
+          switch (event) {
+            case 'SIGNED_IN':
+              const { data } = await supabase
+                .from('profile')
+                .select('name')
+                .match({ id: session.user.id })
+
+              if (data.length === 0) {
+                setLoginUser({
+                  id: session.user.id,
+                  name: ''
+                })
+                router.push("/profile")
+              } else {
+                setLoginUser({
+                  id: session.user.id,
+                  name: data[0].name
+                })
+                router.push("/home")
+              }
+              break;
+            case 'SIGNED_OUT':
+              setLoginUser(null)
+              router.push("/")
+              break;
           }
         })
       }

@@ -19,6 +19,7 @@ const useStyles = makeStyles((theme) => ({
     backgroundColor: '#212121',
     paddingLeft: 16,
     paddingRight: 16,
+    textTransform: 'none',
     marginTop: theme.spacing(8),
     '&:hover': {
       backgroundColor: '#aaa',

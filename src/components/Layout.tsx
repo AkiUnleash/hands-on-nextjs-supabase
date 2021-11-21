@@ -31,6 +31,9 @@ const useStyles = makeStyles((theme) => ({
   title: {
     flexGrow: 1,
   },
+  buttonLogout: {
+    textTransform: 'none',
+  }
 }));
 
 /**
@@ -65,7 +68,7 @@ const Layout: NextPage<Props> = ({ children }: Props) => {
             {siteTitle}
           </Typography>
           {loginUser && (
-            <Button color='inherit' onClick={logoutHandler}>
+            <Button color='inherit' className={classes.buttonLogout} onClick={logoutHandler}>
               Logout
             </Button>
           )}

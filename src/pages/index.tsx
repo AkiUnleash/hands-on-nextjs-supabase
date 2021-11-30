@@ -2,7 +2,7 @@ import type { NextPage } from 'next';
 import Layout from 'src/components/Layout';
 import { Container, Box, CssBaseline, Button } from '@mui/material';
 import GitHubIcon from '@mui/icons-material/GitHub';
-import imageKey from 'src/assets/images/key.png';
+import imageKey from 'src/assets/images/key.svg';
 import { makeStyles } from '@material-ui/core/styles';
 import { ThemeProvider } from '@mui/material/styles';
 import theme from 'src/service/mui/theme';
@@ -19,6 +19,7 @@ const useStyles = makeStyles((theme) => ({
     backgroundColor: '#212121',
     paddingLeft: 16,
     paddingRight: 16,
+    textTransform: 'none',
     marginTop: theme.spacing(8),
     '&:hover': {
       backgroundColor: '#aaa',

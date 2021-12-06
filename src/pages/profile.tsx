@@ -3,7 +3,6 @@ import { useState } from 'react';
 import Layout from 'src/components/Layout';
 import { Container, CssBaseline, Box, Button, TextField } from '@mui/material';
 import imageProfile from 'src/assets/images/profile.svg';
-import { makeStyles } from '@material-ui/core/styles';
 import { ThemeProvider } from '@mui/material/styles';
 import theme from 'src/service/mui/theme';
 import Heading from 'src/components/Heading';
@@ -11,29 +10,7 @@ import { supabase } from 'src/service/supabase/connections';
 import { useRecoilState } from 'recoil';
 import { loginUserState } from 'src/service/recoil/loginuser';
 import router from 'next/router';
-
-/**
- * スタイルシート
- */
-const useStyles = makeStyles((theme) => ({
-  textboxName: {
-    marginTop: theme.spacing(6),
-  },
-  buttonRegister: {
-    fontSize: 18,
-    color: '#fff',
-    backgroundColor: theme.palette.primary.main,
-    paddingLeft: 16,
-    paddingRight: 16,
-    marginTop: theme.spacing(4),
-    '&:hover': {
-      backgroundColor: '#90caf9',
-    },
-    '&.Mui-disabled': {
-      backgroundColor: '#bdbdbd',
-    }
-  },
-}));
+import { useStyles } from 'src/assets/styles/stylesComponents'
 
 /**
  * プロフィール登録画面

@@ -1,3 +1,3 @@
 tasks:
-  - init: yarn install
-    command: touch .env.local && echo NEXT_PUBLIC_SUPABASE_URL= >> .env.local && echo NEXT_PUBLIC_SUPABASE_KEY= >> .env.local
+  - init: touch .env.local && echo NEXT_PUBLIC_SUPABASE_URL= >> .env.local && echo NEXT_PUBLIC_SUPABASE_KEY= >> .env.local
+    command: yarn install

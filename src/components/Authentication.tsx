@@ -32,7 +32,7 @@ const Authentication: NextPage<Props> = ({ children }) => {
                 .select('name')
                 .match({ id: session.user.id });
 
-              if (data.length === 0) {
+              if (!data || data.length === 0) {
                 setLoginUser({
                   id: session.user.id,
                   name: '',

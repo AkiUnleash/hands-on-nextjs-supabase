@@ -40,7 +40,7 @@ const Index: NextPage = () => {
               className={classes.buttonGithub}
               onClick={handleClick}
             >
-              Sign in with Github
+              Sign in with Github!
             </Button>
           </Box>
         </Container>

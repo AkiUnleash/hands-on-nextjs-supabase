@@ -8,24 +8,7 @@ import { ThemeProvider } from '@mui/material/styles';
 import theme from 'src/service/mui/theme';
 import Heading from 'src/components/Heading';
 import { supabase } from 'src/service/supabase/connections';
-
-/**
- * スタイルシート
- */
-const useStyles = makeStyles((theme) => ({
-  buttonGithub: {
-    fontSize: 18,
-    color: '#fff',
-    backgroundColor: '#212121',
-    paddingLeft: 16,
-    paddingRight: 16,
-    textTransform: 'none',
-    marginTop: theme.spacing(8),
-    '&:hover': {
-      backgroundColor: '#aaa',
-    },
-  },
-}));
+import { useStyles } from 'src/assets/styles/stylesComponents'
 
 /**
  * トップ画面

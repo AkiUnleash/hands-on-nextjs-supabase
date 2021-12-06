@@ -11,29 +11,7 @@ import { supabase } from 'src/service/supabase/connections';
 import { useRecoilState } from 'recoil';
 import { loginUserState } from 'src/service/recoil/loginuser';
 import router from 'next/router';
-
-/**
- * スタイルシート
- */
-const useStyles = makeStyles((theme) => ({
-  textboxName: {
-    marginTop: theme.spacing(6),
-  },
-  buttonRegister: {
-    fontSize: 18,
-    color: '#fff',
-    backgroundColor: theme.palette.primary.main,
-    paddingLeft: 16,
-    paddingRight: 16,
-    marginTop: theme.spacing(4),
-    '&:hover': {
-      backgroundColor: '#90caf9',
-    },
-    '&.Mui-disabled': {
-      backgroundColor: '#bdbdbd',
-    }
-  },
-}));
+import { useStyles } from 'src/assets/styles/stylesComponents'
 
 /**
  * プロフィール登録画面

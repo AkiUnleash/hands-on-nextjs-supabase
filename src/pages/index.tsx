@@ -3,12 +3,11 @@ import Layout from 'src/components/Layout';
 import { Container, Box, CssBaseline, Button } from '@mui/material';
 import GitHubIcon from '@mui/icons-material/GitHub';
 import imageKey from 'src/assets/images/key.svg';
-import { makeStyles } from '@material-ui/core/styles';
 import { ThemeProvider } from '@mui/material/styles';
 import theme from 'src/service/mui/theme';
 import Heading from 'src/components/Heading';
 import { supabase } from 'src/service/supabase/connections';
-import { useStyles } from 'src/assets/styles/stylesComponents'
+import { useStyles } from 'src/assets/styles/stylesComponents';
 
 /**
  * トップ画面

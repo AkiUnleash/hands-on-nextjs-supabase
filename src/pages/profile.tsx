@@ -3,7 +3,6 @@ import { useState } from 'react';
 import Layout from 'src/components/Layout';
 import { Container, CssBaseline, Box, Button, TextField } from '@mui/material';
 import imageProfile from 'src/assets/images/profile.svg';
-import { makeStyles } from '@material-ui/core/styles';
 import { ThemeProvider } from '@mui/material/styles';
 import theme from 'src/service/mui/theme';
 import Heading from 'src/components/Heading';

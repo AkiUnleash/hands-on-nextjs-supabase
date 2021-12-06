@@ -1,6 +1,9 @@
 {
-  "name": "nextjs-template",
-  "version": "0.1.0",
+  "name": "supabase-nextjs-hands-on",
+  "version": "1.0.0",
+  "description": "Project created for hands-on use.",
+  "author": "Akio Yano (https://github.com/AkiUnleash)",
+  "license": "MIT",
   "private": true,
   "scripts": {
     "dev": "next dev",

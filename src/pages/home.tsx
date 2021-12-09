@@ -32,7 +32,6 @@ const Home: NextPage = () => {
     setSentence('');
   };
 
-  // 投稿内容の取得
   const readDiary = useCallback(async () => {
     // // ７.投稿ページ - 投稿の表示
     // const { data } = await supabase

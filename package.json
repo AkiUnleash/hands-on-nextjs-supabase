@@ -1,11 +1,16 @@
 {
-  "name": "nextjs-template",
-  "version": "0.1.0",
+  "name": "supabase-nextjs-hands-on",
+  "version": "1.0.0",
+  "description": "Project created for hands-on use.",
+  "author": "Akio Yano (https://github.com/AkiUnleash)",
+  "license": "MIT",
   "private": true,
   "scripts": {
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
+    "go": "next build && yarn open && next start",
+    "open": "open http://localhost:3000",
     "lint": "next lint --dir src",
     "lint:fix": "eslint src --ext .js,jsx,.ts,.tsx --fix",
     "format": "prettier --write --ignore-path .gitignore './**/*.{js,jsx,ts,tsx,json,css}'"

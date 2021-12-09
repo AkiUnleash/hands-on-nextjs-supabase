@@ -20,33 +20,34 @@ const Home: NextPage = () => {
   const [sentence, setSentence] = useState('');
   const [timeline, setTimeline] = useState<diary[]>([]);
 
-  // 投稿の登録処理
   const registerDiary = async () => {
-    const { error } = await supabase.from('diary').insert([
-      {
-        profile_id: loginUser.id,
-        sentence: sentence,
-      },
-    ]);
-    error && console.error(error);
+    // // ７.投稿ページ - 投稿の登録処理
+    // const { error } = await supabase.from('diary').insert([
+    //   {
+    //     profile_id: loginUser.id,
+    //     sentence: sentence,
+    //   },
+    // ]);
+    // error && console.error(error);
     setSentence('');
   };
 
   // 投稿内容の取得
   const readDiary = useCallback(async () => {
-    const { data } = await supabase
-      .from('diary')
-      .select(
-        `sentence,
-            created_at,
-            profile (
-              name
-            )
-            `,
-      )
-      .order('created_at', { ascending: false });
+    // // ７.投稿ページ - 投稿の表示
+    // const { data } = await supabase
+    //   .from('diary')
+    //   .select(
+    //     `sentence,
+    //         created_at,
+    //         profile (
+    //           name
+    //         )
+    //         `,
+    //   )
+    //   .order('created_at', { ascending: false });
 
-    setTimeline(data);
+    // setTimeline(data);
   }, []);
 
   // Submit実行時の処理

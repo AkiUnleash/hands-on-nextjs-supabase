@@ -16,9 +16,9 @@ import { useStyles } from 'src/assets/styles/stylesComponents';
 const Index: NextPage = () => {
   const classes = useStyles();
 
-  // Githubログインボタンのクリック時
   const handleClick = async () => {
-    await supabase.auth.signIn({ provider: 'github' });
+    // // ５．Github ログインの作成 - Github ログイン処理
+    // await supabase.auth.signIn({ provider: 'github' });
   };
 
   return (

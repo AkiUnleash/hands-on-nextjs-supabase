@@ -21,7 +21,6 @@ const Profile: NextPage = () => {
   const [loginUser, setLoginUser] = useRecoilState(loginUserState);
   const [name, setName] = useState('');
 
-  // プロフィール登録ボタンクリック時の処理
   const handleSubmit = async (event) => {
     event.preventDefault();
 
@@ -30,15 +29,15 @@ const Profile: NextPage = () => {
       name: name,
     });
 
-    const { error } = await supabase.from('profile').upsert([
-      {
-        id: loginUser.id,
-        name: name,
-      },
-    ]);
-
-    error && console.error(error);
-    router.push('/home');
+    // // ６．プロフィール登録 - プロフィール登録処理
+    // const { error } = await supabase.from('profile').upsert([
+    //   {
+    //     id: loginUser.id,
+    //     name: name,
+    //   },
+    // ]);
+    // error && console.error(error);
+    // router.push('/home');
   };
 
   return (

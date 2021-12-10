@@ -59,7 +59,7 @@ const Authentication: NextPage<Props> = ({ children }) => {
       unmounted = true;
     };
     return cleanUp;
-  }, []);
+  }, [setLoginUser]);
 
   return <>{children}</>;
 };

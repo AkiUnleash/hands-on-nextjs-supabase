@@ -71,7 +71,7 @@ const Home: NextPage = () => {
     return () => {
       isUnmount = true;
     };
-  }, []);
+  }, [readDiary]);
 
   return (
     <ThemeProvider theme={theme}>
